@@ -1,30 +1,35 @@
 // Import statement:
+import java.util.ArrayList;
 
 class PrimeDirective {
-
-  int numChosen;
-
+  
   // Add your methods here:
-  public PrimeDirective(int num) {
-    numChosen = num;
-  }
-
-  public String isPrime() {
-    if (numChosen <= 1) {
-      return "This is not a prime number";
-    } else {
-      for (int i = 2; i < numChosen; i++) {
-        if (numChosen % i == 0) {
-          return "This is not a prime number";
-        }
+  public boolean isPrime(int number) {
+    for (int i = 2; i < number; i++) {
+      if (number < 2 || number % i == 0) { //short-circuited evaluation
+        return false;
       }
-
-      return "This is a prime number";
     }
+    return true;
   }
 
-  public static void main(String[] args) {
-    PrimeDirective test10 = new PrimeDirective(17);
-    System.out.println(test10.isPrime());
+  public ArrayList<Integer> onlyPrimes(int[] numbers) {
+    ArrayList<Integer> primes = new ArrayList<Integer>();
+    for (int number : numbers) {
+        if (isPrime(number)) {
+          primes.add(number);
+        }
+    }
+    return primes;
   }
+  
+  public static void main(String[] args) {
+
+    PrimeDirective pd = new PrimeDirective();
+    int[] numbers = {6, 29, 28, 33, 11, 100, 101, 43, 89};
+    System.out.println(pd.isPrime(2));
+    System.out.println(pd.onlyPrimes(numbers));
+
+  }  
+
 }
